@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #0f0f18;
+  --color-bg-card: rgba(255, 255, 255, 0.03);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(0, 212, 255, 0.3);
+
+  --color-accent-css: #00d4ff;
+  --color-accent-gsap: #88ce02;
+  --color-accent-motion: #646cff;
+  --color-accent-threejs: #ff6b35;
+
+  --color-text-primary: #f0f0f8;
+  --color-text-secondary: #8888aa;
+  --color-text-muted: #555577;
+
+  --font-family-mono: 'JetBrains Mono', 'Space Mono', 'Courier New', monospace;
+  --font-family-sans: 'Noto Sans JP', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0f;
+  color: #f0f0f8;
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism card base */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.4);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 255, 0.2);
+  color: #f0f0f8;
+}
+
+/* Code font */
+code, pre {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace;
+}
+
+/* Glow utility */
+.glow-css {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+}
+.glow-gsap {
+  box-shadow: 0 0 20px rgba(136, 206, 2, 0.15);
+}
+.glow-motion {
+  box-shadow: 0 0 20px rgba(100, 108, 255, 0.15);
+}
+.glow-threejs {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.15);
+}
+
+/* Gradient text */
+.gradient-text-css {
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
