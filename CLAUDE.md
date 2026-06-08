@@ -233,6 +233,17 @@ backdrop-filter: blur(12px);
 
 ---
 
+## コーディング規約（ECC rules）
+
+作業時は、ECC から導入した以下のルール集に従う（参照ドキュメント）。
+
+- `.claude/rules/ecc/common/` — 言語不問の原則（coding-style / git-workflow / testing / security / performance / code-review / patterns 等）
+- `.claude/rules/ecc/typescript/` — TypeScript 固有の規約
+
+また `.claude/skills/` には ECC のフロントエンド系スキルを導入済み（`nuxt4-patterns`, `ui-to-vue`, `accessibility`, `design-system`, `frontend-design-direction`, `coding-standards`, `motion-foundations`）。該当作業時に自動参照、または `/<skill-name>` で明示呼び出しできる。
+
+---
+
 ## フェーズ計画
 
 | フェーズ | 内容 | 状態 |
