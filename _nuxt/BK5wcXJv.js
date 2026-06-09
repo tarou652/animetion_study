@@ -1,0 +1,1 @@
+import{_ as n}from"./BboY25Mi.js";import{_ as t,n as e,o as c}from"./DC496Vmg.js";import"./BOKeimE_.js";const r={};function _(s,a){const o=n;return c(),e(o,{title:"SVG",accent:"#f038ff",description:"パスの描画アニメーション・モーフィング・stroke-dasharray を使った線画演出など、ベクターならではの表現を扱います。Phase 4 で公開予定です。"})}const p=t(r,[["render",_]]);export{p as default};

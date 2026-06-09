@@ -1,0 +1,1 @@
+import{_ as n}from"./BboY25Mi.js";import{_ as e,n as t,o as c}from"./DC496Vmg.js";import"./BOKeimE_.js";const _={};function r(s,i){const o=n;return c(),t(o,{title:"Motion",accent:"#646cff",description:"@vueuse/motion による宣言的アニメーション。Vue コンポーネントに自然に溶け込む書き味でインタラクションを作ります。Phase 4 で公開予定です。"})}const p=e(_,[["render",r]]);export{p as default};

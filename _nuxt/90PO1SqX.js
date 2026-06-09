@@ -1,0 +1,1 @@
+import{_ as n}from"./BboY25Mi.js";import{_ as e,n as t,o as c}from"./DC496Vmg.js";import"./BOKeimE_.js";const _={};function r(s,a){const o=n;return c(),t(o,{title:"GSAP",accent:"#88ce02",description:"タイムライン制御とプラグイン群で、複雑なシーケンスやスクロール演出を緻密に組み立てる業界標準ライブラリ。Phase 3 で公開予定です。"})}const f=e(_,[["render",r]]);export{f as default};

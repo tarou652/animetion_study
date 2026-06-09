@@ -1,0 +1,1 @@
+import{_ as o}from"./BboY25Mi.js";import{_ as n,n as t,o as c}from"./DC496Vmg.js";import"./BOKeimE_.js";const r={};function _(s,a){const e=o;return c(),t(e,{title:"Three.js",accent:"#ff6b35",description:"WebGL と TresJS で 3D 空間のアニメーションへ。ジオメトリ・マテリアル・ライト・カメラを操り、立体的なモーションを作ります。Phase 5 で公開予定です。"})}const p=n(r,[["render",_]]);export{p as default};
