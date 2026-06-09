@@ -7,6 +7,10 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/content'],
 
+  // GitHub Pages（プロジェクトページ）向け。
+  // .nojekyll と 404.html を自動生成し、_nuxt/ が Jekyll に無視されるのを防ぐ。
+  nitro: { preset: 'github_pages' },
+
   css: ['~/assets/css/main.css'],
 
   vite: {
@@ -25,6 +29,8 @@ export default defineNuxtConfig({
   },
 
   app: {
+    // ローカルは '/'、CI では NUXT_APP_BASE_URL=/animetion_study/ を渡す。
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       title: 'Animation Lab — Motion as Knowledge',
       htmlAttrs: { lang: 'ja' },
