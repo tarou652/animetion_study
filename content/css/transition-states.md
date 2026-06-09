@@ -5,30 +5,6 @@ difficulty: beginner
 tags: [transition, hover, focus, states]
 order: 4
 component: DemosCssTransitionStates
-code:
-  css: |
-    .card {
-      /* 変化させたいプロパティ・時間・イージングを指定 */
-      transition: transform 0.3s ease, background-color 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px) scale(1.05);
-      background: rgba(0, 212, 255, 0.12);
-      box-shadow: 0 12px 30px -10px rgba(0, 212, 255, 0.6);
-    }
-
-    .card:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.5);
-    }
-
-    .card:active {
-      transform: scale(0.92);
-    }
-  html: |
-    <button class="card">Hover / Focus / Press</button>
 tips:
   - "transition は『状態Aから状態Bへ』の補間。@keyframes のような自走はしない。"
   - "transition: all は意図しないプロパティまで対象になり重い。明示的に列挙する。"

@@ -188,10 +188,13 @@ defineProps<{
 
 ### 新しいデモの追加手順
 
-1. `content/css/{slug}.md` を作成（frontmatter + 理論説明）
-2. `app/components/demos/css/{ComponentName}.vue` を作成
-3. `app/components/AnimationCard.vue` の `demoComponentMap` にスラグとコンポーネント名を追加
-4. markdown の `component:` フィールドにコンポーネント名を記入
+追加するのは **2 ファイルだけ**。デモコンポーネントは `import.meta.glob` で自動検出されるため、対応表の編集は不要。
+
+1. `content/css/{slug}.md` を作成（frontmatter + 理論説明）。`component:` に自動インポート名（例 `DemosCssKeyframesBasic`）を記入。コードの解説は本文にコードブロック（\`\`\`css）として書く
+2. `app/components/demos/css/{ComponentName}.vue` を作成（アニメーション本体。LIVE DEMO に描画される）
+
+> 役割分離: **理論・コード解説は Markdown 本文**、**アニメーション実装は Vue コンポーネント**。frontmatter にアニメーションコードは持たせず、`.vue` 全文の自動表示もしない（冗長になるため）。
+> コンポーネントの解決はデータ（文字列）駆動になるため `resolveComponent(文字列)` は使わず、`import.meta.glob('.../demos/**/*.vue', { eager: true })` のモジュールを名前で引く。
 
 ---
 

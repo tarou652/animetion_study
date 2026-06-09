@@ -5,18 +5,6 @@ difficulty: beginner
 tags: [timing, easing, cubic-bezier]
 order: 2
 component: DemosCssTimingFunctions
-code:
-  css: |
-    .linear { animation-timing-function: linear; }
-    .ease   { animation-timing-function: ease; }      /* 既定値 */
-    .in     { animation-timing-function: ease-in; }
-    .out    { animation-timing-function: ease-out; }
-    .inout  { animation-timing-function: ease-in-out; }
-
-    /* 4点で自由な曲線を描く。第2・第4の値が1を超えると行き過ぎ（overshoot） */
-    .back {
-      animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    }
 tips:
   - "UI の登場には ease-out、退場には ease-in が自然に感じられることが多い。"
   - "cubic-bezier の制御点を 1 より大きく/0 より小さくすると行き過ぎる動き（弾み）が作れる。"

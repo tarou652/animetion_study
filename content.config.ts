@@ -12,13 +12,6 @@ export default defineContentConfig({
         tags: z.array(z.string()),
         order: z.number(),
         component: z.string(),
-        code: z
-          .object({
-            html: z.string().optional(),
-            css: z.string().optional(),
-            js: z.string().optional(),
-          })
-          .optional(),
         tips: z.array(z.string()).optional(),
       }),
     }),

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 interface Demo {
   path: string
   title: string
@@ -12,21 +14,28 @@ const props = defineProps<{
   demo: Demo
 }>()
 
-// slug → 自動インポート済みコンポーネント名のマッピング。
-// frontmatter の component フィールドを優先し、無ければここで補完する。
-const demoComponentMap: Record<string, string> = {
-  'keyframes-basics': 'DemosCssKeyframesBasic',
-  'timing-functions': 'DemosCssTimingFunctions',
-  'transform-gallery': 'DemosCssTransformGallery',
-  'transition-states': 'DemosCssTransitionStates',
-}
+// デモコンポーネント本体を import.meta.glob で静的に取り込む。
+// resolveComponent(文字列) はデータ駆動だとバンドル対象から外れて解決に失敗するため、
+// glob でモジュールごと取り込み、Nuxt 自動インポート名で引く。
+const demoModules = import.meta.glob('./demos/**/*.vue', {
+  eager: true,
+  import: 'default',
+}) as Record<string, Component>
+const componentByName = Object.fromEntries(
+  Object.entries(demoModules).map(([filePath, mod]) => {
+    const name = filePath
+      .slice(filePath.indexOf('demos/'))
+      .replace(/\.vue$/, '')
+      .split('/')
+      .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+      .join('')
+    return [name, mod]
+  }),
+)
 
-const slug = computed(() => props.demo.path.split('/').pop() ?? '')
-
-const previewComponent = computed(() => {
-  const name = props.demo.component || demoComponentMap[slug.value]
-  return name ? resolveComponent(name) : null
-})
+const previewComponent = computed(() =>
+  props.demo.component ? (componentByName[props.demo.component] ?? null) : null,
+)
 </script>
 
 <template>

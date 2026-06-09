@@ -5,22 +5,6 @@ difficulty: beginner
 tags: [transform, translate, scale, rotate]
 order: 3
 component: DemosCssTransformGallery
-code:
-  css: |
-    .translate { transform: translate(20px, -16px); }
-    .scale     { transform: scale(1.4); }
-    .rotate    { transform: rotate(45deg); }
-    .skew      { transform: skew(18deg, 6deg); }
-
-    /* 複数の変形は半角スペースで連結。適用順は右→左 */
-    .combo {
-      transform: translateX(20px) rotate(45deg) scale(1.2);
-    }
-
-    /* 3D。perspective で奥行きを与える */
-    .flip {
-      transform: perspective(300px) rotateY(50deg);
-    }
 tips:
   - "transform はレイアウト（リフロー）を起こさず GPU 合成されるため高速。"
   - "複数の関数を並べると右から順に適用される。順序で結果が変わる点に注意。"

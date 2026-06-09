@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 const route = useRoute()
 const path = computed(() => `/css/${route.params.slug}`)
 
@@ -21,37 +23,31 @@ const navIndex = computed(() =>
 const prev = computed(() => all.value?.[navIndex.value - 1] ?? null)
 const next = computed(() => all.value?.[navIndex.value + 1] ?? null)
 
-const liveComponent = computed(() =>
-  demo.value?.component ? resolveComponent(demo.value.component) : null,
+// glob のファイルパス（例: ../../components/demos/css/KeyframesBasic.vue）を
+// Nuxt 自動インポート名（例: DemosCssKeyframesBasic）へ変換する。
+function toComponentName(filePath: string): string {
+  return filePath
+    .slice(filePath.indexOf('components/') + 'components/'.length)
+    .replace(/\.vue$/, '')
+    .split('/')
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join('')
+}
+
+// デモコンポーネント本体を import.meta.glob で静的に取り込む。
+// resolveComponent(文字列) はデータ駆動だと Nuxt のバンドル対象から外れて
+// 解決に失敗するため、glob でモジュールごと取り込んで名前で引く。
+const demoModules = import.meta.glob('../../components/demos/**/*.vue', {
+  eager: true,
+  import: 'default',
+}) as Record<string, Component>
+const componentByName = Object.fromEntries(
+  Object.entries(demoModules).map(([filePath, mod]) => [toComponentName(filePath), mod]),
 )
 
-// コードタブ
-const codeTabs = computed(() => {
-  const code = demo.value?.code ?? {}
-  return (['html', 'css', 'js'] as const)
-    .filter((k) => code[k])
-    .map((k) => ({ key: k, label: k.toUpperCase(), content: code[k] as string }))
-})
-const activeTab = ref<'html' | 'css' | 'js'>('css')
-watchEffect(() => {
-  if (codeTabs.value.length && !codeTabs.value.some((t) => t.key === activeTab.value)) {
-    activeTab.value = codeTabs.value[0]!.key
-  }
-})
-
-// コピー
-const copied = ref(false)
-async function copyCode() {
-  const current = codeTabs.value.find((t) => t.key === activeTab.value)
-  if (!current) return
-  try {
-    await navigator.clipboard.writeText(current.content)
-    copied.value = true
-    setTimeout(() => (copied.value = false), 1500)
-  } catch {
-    /* clipboard 非対応環境は無視 */
-  }
-}
+const liveComponent = computed(() =>
+  demo.value?.component ? (componentByName[demo.value.component] ?? null) : null,
+)
 
 useHead(() => ({
   title: demo.value ? `${demo.value.title} — Animation Lab` : 'Animation Lab',
@@ -94,45 +90,7 @@ useHead(() => ({
       <ContentRenderer :value="demo" />
     </section>
 
-    <!-- ④ CODE -->
-    <section v-if="codeTabs.length" class="py-10">
-      <h2 class="mb-4 font-mono text-sm tracking-widest text-[var(--color-accent-css)]">
-        ▸ CODE
-      </h2>
-      <div class="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#0d1117]">
-        <div class="flex items-center justify-between border-b border-[var(--color-border)] px-4">
-          <div class="flex">
-            <button
-              v-for="tab in codeTabs"
-              :key="tab.key"
-              class="border-b-2 px-4 py-2.5 font-mono text-xs transition-colors"
-              :class="
-                activeTab === tab.key
-                  ? 'border-[var(--color-accent-css)] text-[var(--color-accent-css)]'
-                  : 'border-transparent text-gray-500 hover:text-gray-300'
-              "
-              @click="activeTab = tab.key"
-            >
-              {{ tab.label }}
-            </button>
-          </div>
-          <button
-            class="rounded-md px-3 py-1 font-mono text-xs text-gray-400 transition-colors hover:text-white"
-            @click="copyCode"
-          >
-            {{ copied ? '✓ Copied' : 'Copy' }}
-          </button>
-        </div>
-        <pre
-          v-for="tab in codeTabs"
-          v-show="activeTab === tab.key"
-          :key="tab.key"
-          class="overflow-x-auto p-5 font-mono text-[0.8rem] leading-relaxed text-gray-200"
-        ><code>{{ tab.content.trimEnd() }}</code></pre>
-      </div>
-    </section>
-
-    <!-- ⑤ TIPS -->
+    <!-- ④ TIPS -->
     <section v-if="demo.tips?.length" class="py-6">
       <h2 class="mb-4 font-mono text-sm tracking-widest text-[var(--color-accent-css)]">
         ▸ TIPS

@@ -5,29 +5,6 @@ difficulty: beginner
 tags: [keyframes, animation]
 order: 1
 component: DemosCssKeyframesBasic
-code:
-  css: |
-    /* キーフレームの定義 */
-    @keyframes slide-in {
-      from {
-        transform: translateX(-180px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    /* 要素への適用 */
-    .box {
-      animation-name: slide-in;
-      animation-duration: 1.2s;
-      animation-timing-function: ease;
-      animation-fill-mode: forwards; /* 終了状態を維持 */
-    }
-  html: |
-    <div class="box"></div>
 tips:
   - "複数段階の動きは % 指定（0% / 50% / 100%）で細かく制御できる。"
   - "animation-fill-mode: forwards を付けないと、終了後に初期状態へ戻る。"

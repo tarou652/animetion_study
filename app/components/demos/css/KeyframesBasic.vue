@@ -50,10 +50,7 @@ function replay() {
                   ? 'border-[var(--color-accent-css)] bg-[var(--color-accent-css)]/15 text-[var(--color-accent-css)]'
                   : 'border-[var(--color-border)] text-gray-400 hover:text-white'
               "
-              @click="
-                type = t
-                replay()
-              "
+              @click="type = t; replay()"
             >
               {{ t }}
             </button>
