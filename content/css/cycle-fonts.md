@@ -6,12 +6,12 @@
 #
 #  必須フィールド（content.config.ts の schema に対応）
 # ============================================================
-title: "デモのタイトル"                 # 例: "@keyframes の基本"
-description: "一覧カードに出る 1 行説明。" # 短く・体言止め推奨
+title: "円が転がってくる"                 # 例: "@keyframes の基本"
+description: "転がって表示されるアニメーションを作成する。" # 短く・体言止め推奨
 difficulty: beginner                     # beginner | intermediate | advanced
-tags: [tag1, tag2]                       # 技術タグ（例: [keyframes, animation]）
-order: 99                                # 一覧の並び順（昇順）。既存と重複させない
-component: DemosCssYourDemo              # app/components/demos/css/YourDemo.vue に対応する自動インポート名
+tags: [keyframes, animation]                       # 技術タグ（例: [keyframes, animation]）
+order: 6                                # 一覧の並び順（昇順）。既存と重複させない
+component: DemosCssCycleFonts              # app/components/demos/css/YourDemo.vue に対応する自動インポート名
 
 # ============================================================
 #  任意フィールド

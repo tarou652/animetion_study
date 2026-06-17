@@ -11,6 +11,10 @@
 | 1 | 理論 + メタデータ | `templates/css/demo.md` → `content/css/clip-path-morph.md` |
 | 2 | アニメーション本体 | `templates/css/Demo.vue` → `app/components/demos/css/ClipPathMorph.vue` |
 
+> ⚠ **md のファイル名はそのまま URL の slug になる**ので、必ずケバブケース（`clip-path-morph.md`）で保存する。
+> PascalCase（`ClipPathMorph.md`）だと `/css/clippathmorph` のような不揃いな URL になる。
+> Vue コンポーネント側は従来どおり PascalCase（`ClipPathMorph.vue`）。
+
 ### コピー後にやること
 
 1. `content/css/clip-path-morph.md` の frontmatter を埋める
